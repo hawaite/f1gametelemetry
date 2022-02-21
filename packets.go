@@ -2,6 +2,19 @@ package f1gametelemetry
 
 import "encoding/json"
 
+const (
+	MotionPacketId              = 0
+	SessionPacketId             = 1
+	LapDataPacketId             = 2
+	EventPacketId               = 3
+	ParticipantsPacketId        = 4
+	CarSetupsPacketId           = 5
+	CarTelemetryPacketId        = 6
+	CarStatusPacketId           = 7
+	FinalClassificationPacketId = 8
+	LobbyInfoPacketId           = 9
+)
+
 type PacketHeader struct {
 	PacketFormat            uint16
 	GameMajorVersion        uint8
@@ -25,12 +38,12 @@ type CarTelemetryData struct {
 	EngineRPM              uint16
 	DRS                    uint8
 	RevLightPercent        uint8
-	BrakesTemperature      [4]uint16
-	TyreSurfaceTemperature [4]uint8
-	TyreInnerTemperature   [4]uint8
+	BrakesTemperature      U16Wheel
+	TyreSurfaceTemperature U8Wheel
+	TyreInnerTemperature   U8Wheel
 	EngineTemperature      uint16
-	TyrePressure           [4]float32
-	SurfaceType            [4]uint8
+	TyrePressure           F32Wheel
+	SurfaceType            U8Wheel
 }
 
 type CarTelemetryPacket struct {
